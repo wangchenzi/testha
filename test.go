@@ -55,12 +55,14 @@ func main() {
 		fmt.Printf("send fail")
 		return
 	}
+	defer resp.Body.Close() //一定要关闭resp.Body
 
 	db, err := sql.Open("mysql", "root:238238238@tcp(127.0.0.1:3306)/mysql?charset=utf8")
 	if err != nil {
 		fmt.Printf("conn db err")
 		return
 	}
+	defer db.Close()
 	//哈哈huohuo
 
 	stmt, err := db.Prepare("select f_id,f_name from md_test.t_test where 1=1")
@@ -68,11 +70,15 @@ func main() {
 		fmt.Printf("Prepare table err")
 		return
 	}
+
+	defer stmt.Close()
 	rows, err := stmt.Query()
 	if err != nil {
 		fmt.Printf("Query db err")
 		return
 	}
+
+	defer rows.Close()
 
 	for rows.Next() {
 		var f_id string
@@ -84,11 +90,6 @@ func main() {
 		}
 		fmt.Println(f_id, f_name)
 	}
-	defer db.Close()
-	defer stmt.Close()
-	defer rows.Close()
-
-	defer resp.Body.Close() //一定要关闭resp.Body
 
 	c, err1 := redis.Dial("tcp", "localhost:6379") // 指定端口，连接方式
 	if err1 != nil {
