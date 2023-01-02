@@ -61,7 +61,7 @@ func main() {
 		fmt.Printf("conn db err")
 		return
 	}
-	//哈哈
+	//哈哈huohuo
 
 	stmt, err := db.Prepare("select f_id,f_name from md_test.t_test where 1=1")
 	if err != nil {
