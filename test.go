@@ -35,7 +35,7 @@ func main() {
 	//fmt.Printf(_now)
 	_account := "C39781260"                         //查看用户名 登录用户中心->验证码通知短信>产品总览->API接口信息->APIid
 	_password := "acf3be18589488307fc6995bc2b28bf0" //查看密码 登录用户中心->验证码通知短信>产品总览->API接口信息->APIKEY
-	_mobile := "13087213080"
+	_mobile := "18607429132"
 	code := CreateCaptcha()
 	_content := fmt.Sprintf("您的验证码是：%s。请不要把验证码泄露给其他人。", code)
 	v.Set("account", _account)
